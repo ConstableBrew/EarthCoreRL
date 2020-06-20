@@ -1,12 +1,10 @@
 {
     "name": "EarthCoreRL",
-    "version": "1.0.0",
+    "version": "0.1.1",
     "description": "Deep below a remote mountain lies the largest platinum deposit ever discovered. A multi-billion-dollar find, it waits for any company that can drill a world's record, three-mile-deep mine shaft. EarthCore is the company with the technology, the resources and the guts to go after the mother lode. But at three miles below the surface, where the rocks are so hot they burn bare skin, something has been waiting for centuries. Waiting ...and guarding. EarthCore is about to find out first-hand why this treasure has never been unearthed.",
     "private": true,
     "scripts": {
-        "build": "webpack",
-        "start": "node ./server.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "node ./server.js"
     },
     "author": "Michael Brewer",
     "license": "MIT",
@@ -21,5 +19,8 @@
     "repository": {
         "type": "git",
         "url": "git://github.com/constablebrew/EarthCoreRL.git"
+    },
+    "engines": {
+        "node": "12.x"
     }
 }
