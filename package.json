@@ -1,26 +1,48 @@
 {
-    "name": "EarthCoreRL",
-    "version": "0.1.1",
-    "description": "Deep below a remote mountain lies the largest platinum deposit ever discovered. A multi-billion-dollar find, it waits for any company that can drill a world's record, three-mile-deep mine shaft. EarthCore is the company with the technology, the resources and the guts to go after the mother lode. But at three miles below the surface, where the rocks are so hot they burn bare skin, something has been waiting for centuries. Waiting ...and guarding. EarthCore is about to find out first-hand why this treasure has never been unearthed.",
-    "private": true,
-    "scripts": {
-        "start": "node ./server.js"
-    },
     "author": "Michael Brewer",
-    "license": "MIT",
     "dependencies": {
-        "node-static": "^0.7.11"
+        "serve-handler": "^6.1.3"
     },
+    "description": "Deep below a remote mountain lies the largest platinum deposit ever discovered. A multi-billion-dollar find, it waits for any company that can drill a world's record, three-mile-deep mine shaft. EarthCore is the company with the technology, the resources and the guts to go after the mother lode. But at three miles below the surface, where the rocks are so hot they burn bare skin, something has been waiting for centuries. Waiting ...and guarding. EarthCore is about to find out first-hand why this treasure has never been unearthed.",
     "devDependencies": {
+        "@babel/core": "^7.10.3",
+        "@babel/preset-env": "^7.10.3",
+        "babel-loader": "^8.1.0",
+        "jest": "^26.0.1",
+        "js-sha512": "^0.8.0",
         "rot-js": "^2.1.3",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.11"
     },
+    "engines": {
+        "node": "12.x"
+    },
+    "jest": {
+        "collectCoverageFrom": [
+            "src/**/*.js",
+            "!**/node_modules/**",
+            "!**/public/**",
+            "!**/coverage/**"
+        ],
+        "moduleNameMapper": {
+            "^Components/(.*)$": "<rootDir>/src/components/$1",
+            "^Src/(.*)$": "<rootDir>/src/$1",
+            "^Utilities/(.*)$": "<rootDir>/src/utilities/$1"
+        }
+    },
+    "license": "MIT",
+    "name": "EarthCoreRL",
+    "private": true,
     "repository": {
         "type": "git",
         "url": "git://github.com/constablebrew/EarthCoreRL.git"
     },
-    "engines": {
-        "node": "12.x"
-    }
+    "scripts": {
+        "build": "webpack --mode=production --progress",
+        "start": "node ./server.js",
+        "test": "jest --coverage",
+        "watch-build": "webpack --mode=development --watch --progress",
+        "watch-test": "jest --watch --coverage & npm run start"
+    },
+    "version": "0.1.1"
 }
