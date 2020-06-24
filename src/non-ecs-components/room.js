@@ -35,7 +35,6 @@ export class Room extends AABB {
         this.polyline.forEach((p, i) => {
             const q = this.polyline[i + 1] || this.polyline[0];
             const points = roughLine(p, q);
-            console.log('roughline', {points})
             points && points.forEach((point) => {
                 this.openTile(point);
             });

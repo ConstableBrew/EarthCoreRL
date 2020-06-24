@@ -8,9 +8,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            Components: path.resolve(__dirname, 'src/components/'),
-            Src: path.resolve(__dirname, 'src/'),
-            Utilities: path.resolve(__dirname, 'src/utilities/'),
+            src: path.resolve(__dirname, 'src/'),
         }
     },
     watchOptions: {
