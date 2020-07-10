@@ -1,6 +1,19 @@
-import {isPointInPolygon} from 'Utilities/isPointInPolygon';
+import {isPointInPolygon} from './polygons';
 
 describe('isPointInPolygon', () => {
+    /*
+        Polygon below describes the following shape:
+    (10,10)┌    ┌────┐(20,10)
+           │╲   │    │
+           │ ╲  │    │
+           │  ╲ │    │
+           │   ╲│    │
+           │    │    │
+           │ (15,15) │
+           │         │
+           │         │
+    (10,20)└─────────┘(20,20)
+    */
     const polygon = [
         {x: 10, y: 10},
         {x: 15, y: 15},

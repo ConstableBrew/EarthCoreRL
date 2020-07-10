@@ -1,4 +1,4 @@
-import {RNG} from 'Utilities';
+import {RNG} from 'src/lib/rng';
 
 export const bresenhamLine = ({x: x1, y: y1}, {x: x2, y: y2}) => {
     x1 |= 0; y1 |= 0; x2 |= 0; y2 |= 0; // No float values!
@@ -43,10 +43,7 @@ export const bresenhamLine = ({x: x1, y: y1}, {x: x2, y: y2}) => {
 
 export const roughLine = (a, b) => {
     const linePoints = bresenhamLine(a, b);
-    const points = [
-        a,
-        b,
-    ];
+    const points = [a, b];
     linePoints.reduce(
         (p, q) => {
             const {x: px, y: py} = p;

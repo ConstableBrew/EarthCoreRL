@@ -1,53 +1,49 @@
-import {Display} from 'rot-js/lib';
-import {RNG} from 'Utilities';
-import {Room} from 'Components';
-import {TileMap, TileTypes} from 'Src/constants';
+import {dictionary} from 'src/dictionary';
+import {initCaverns} from 'src/initializers';
+import {onClick, onMouseMove} from 'src/lib/display';
+import {input, processUserInput} from 'src/lib/process-user-input';
+import {RNG} from 'src/lib/rng';
+import {initState, gameState} from 'src/state';
+import {render} from 'src/systems';
 
-RNG.init(Math.random());
+// Set up user input listeners
+document.addEventListener('keydown', (event) => input(event.key));
+onClick((x, y) => console.log('clicked on', x, y));
+onMouseMove((x, y) => console.log('moused over', x, y));
 
-const rows = 120;
-const cols = 60;
-const display = new Display({width: rows, height: cols});
-const canvas = display.getContainer();
-canvas.id = 'main';
-document.body.appendChild(canvas);
+// Game loop tracking
+let lastTimestamp = null;
+let lag = 0;
+const MS_PER_UPDATE = 33; // 33 ms per frame is targeting 30 fps
 
-const rooms = [
-    new Room(50, 20, 20, 20), // Just a rect about half the screen size, centered
-];
+initGame();
 
-const drawRoom = (room) => {
-    const {x, y, x2, y2, tiles, exits} = room;
-    console.log({tiles})
-    Object.keys(tiles).forEach((pos) => {
-        const tile = tiles[pos];
-        const [ch, color, bgcolor] = tile.type;
-        display.draw(tile.x, tile.y, ch, color, bgcolor);
-    });
+function initGame() {
+    const seed = [
+        dictionary[(Math.random() * dictionary.length) | 0],
+        dictionary[(Math.random() * dictionary.length) | 0],
+        dictionary[(Math.random() * dictionary.length) | 0],
+    ].join('-');
+    console.log('seed:', seed);
+    RNG.init(seed);
+    initState();
+    initCaverns();
+    requestAnimationFrame(gameLoop);
+}
 
-    if (DEBUG) {
-        let [ch, color, bgcolor] = TileMap[TileTypes._debug];
+function stateUpdate() {
+    gameState.userInput = null;
+}
 
-        // Draw room's AABB
-        display.draw(x, y, '╭', color, bgcolor);
-        display.draw(x2, y, '╮', color, bgcolor);
-        display.draw(x2, y2, '╯', color, bgcolor);
-        display.draw(x, y2, '╰', color, bgcolor);
-        for (let i = x + 1; i < x2; ++i) {
-            display.draw(i, y, '─', color, bgcolor);
-            display.draw(i, y2, '─', color, bgcolor);
-        }
-        for (let j = y + 1; j < y2; ++j) {
-            display.draw(x, j, '│', color, bgcolor);
-            display.draw(x2, j, '│', color, bgcolor);
-        }
-        exits.forEach((exit) => {
-            display.draw(exit.x, exit.y, '◌', color, bgcolor);
-        });
+
+function gameLoop(timestamp) {
+    const elapsed = timestamp - (lastTimestamp || timestamp);
+    lastTimestamp = timestamp;
+    lag += elapsed;
+    while (lag >= MS_PER_UPDATE) {
+        stateUpdate();
+        lag -= MS_PER_UPDATE;
     }
-};
-
-rooms.forEach((room) => {
-    room.carve();
-    drawRoom(room);
-});
+    render(lag / MS_PER_UPDATE);
+    requestAnimationFrame(gameLoop);
+}
