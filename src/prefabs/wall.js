@@ -8,8 +8,8 @@ import {
 
 import {TileMap} from 'src/constants';
 
-export default {
-    name: "WallPrefab",
+export const WallPrefab = {
+    name: 'WallPrefab',
     components: [
         {
             type: Appearance,

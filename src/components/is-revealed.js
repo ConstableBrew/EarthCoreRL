@@ -1,3 +1,3 @@
 import {Component} from 'geotic';
 
-export default class IsRevealed extends Component {}
+export class IsRevealed extends Component {}

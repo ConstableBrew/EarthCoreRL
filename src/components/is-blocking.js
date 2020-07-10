@@ -1,3 +1,3 @@
 import {Component} from 'geotic';
 
-export default class IsBlocking extends Component {}
+export class IsBlocking extends Component {}

@@ -2,14 +2,14 @@ import {
     Appearance,
     IsBlocking,
     IsOpaque,
-    ActorLayer,
+    ActorsLayer,
     Position,
 } from 'src/components';
 
 import {TileMap} from 'src/constants';
 
-export default {
-    name: "PlayerPawnPrefab",
+export const PlayerPawnPrefab = {
+    name: 'PlayerPawnPrefab',
     components: [
         {
             type: Appearance,
@@ -17,7 +17,7 @@ export default {
         },
         {type: IsBlocking},
         {type: IsOpaque},
-        {type: ActorLayer},
+        {type: ActorsLayer},
         {type: Position},
     ],
 };

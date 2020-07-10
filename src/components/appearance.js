@@ -1,6 +1,6 @@
 import {Component} from 'geotic';
 
-export default class Appearance extends Component {
+export class Appearance extends Component {
     static properties = {
         color: '#ffffff',
         char: '•',

@@ -19,7 +19,7 @@ const drawEntity = (entity) => {
     }
 };
 
-export default const render = (interpolation) => {
+export function render(interpolation) {
     clearCanvas();
 
     backgroundLayerEntities.get().forEach(drawEntity);
@@ -28,4 +28,4 @@ export default const render = (interpolation) => {
     itemsLayerEntities.get().forEach(drawEntity);
     actorsLayerEntities.get().forEach(drawEntity);
     uiLayerEntities.get().forEach(drawEntity);
-};
+}

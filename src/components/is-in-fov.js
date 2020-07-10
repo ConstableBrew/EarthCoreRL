@@ -1,3 +1,3 @@
 import {Component} from 'geotic';
 
-export default class IsInFov extends Component {}
+export class IsInFov extends Component {}

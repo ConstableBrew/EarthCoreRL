@@ -1,11 +1,20 @@
 {
     "author": "Michael Brewer",
+    "babel": {
+        "presets": ["@babel/preset-env"],
+        "plugins": [
+            "@babel/plugin-proposal-class-properties",
+            "@babel/plugin-proposal-export-default-from"
+        ]
+    },
     "dependencies": {
         "serve-handler": "^6.1.3"
     },
     "description": "Deep below a remote mountain lies the largest platinum deposit ever discovered. A multi-billion-dollar find, it waits for any company that can drill a world's record, three-mile-deep mine shaft. EarthCore is the company with the technology, the resources and the guts to go after the mother lode. But at three miles below the surface, where the rocks are so hot they burn bare skin, something has been waiting for centuries. Waiting ...and guarding. EarthCore is about to find out first-hand why this treasure has never been unearthed.",
     "devDependencies": {
         "@babel/core": "^7.10.3",
+        "@babel/plugin-proposal-class-properties": "^7.10.4",
+        "@babel/plugin-proposal-export-default-from": "^7.10.4",
         "@babel/preset-env": "^7.10.3",
         "babel-loader": "^8.1.0",
         "geotic": "^3.3.0",
@@ -40,7 +49,7 @@
         "start": "node ./server.js",
         "test": "jest --coverage",
         "watch-build": "webpack --mode=development --watch --progress",
-        "watch-test": "jest --watch --coverage & npm run start"
+        "watch-test": "jest --watch --coverage"
     },
     "version": "0.1.1"
 }

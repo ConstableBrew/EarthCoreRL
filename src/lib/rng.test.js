@@ -1,4 +1,4 @@
-import {RNG} from 'Utilities/rng';
+import {RNG} from './rng';
 
 describe('RNG', () => {
     describe('random()', () => {

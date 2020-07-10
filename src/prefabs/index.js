@@ -1,2 +1,3 @@
-export PlayerPawnPrefab from './player-pawn';
-export WallPrefab from './wall';
+export {PlayerPawnPrefab} from './player-pawn';
+export {WheelPrefab} from './wheel';
+export {WallPrefab} from './wall';

@@ -1,21 +1,21 @@
 import {canvas, ctx} from './canvas';
-import {displayArea} from 'src/constants';
+import {Layout} from 'src/constants';
 const pixelRatio = window.devicePixelRatio || 1;
 
 
 const font = 'monospace';
 const lineHeight = 1.2;
 
-let calculatedFontSize = window.innerWidth / displayArea.width;
+let calculatedFontSize = window.innerWidth / Layout.width;
 let cellWidth = calculatedFontSize * pixelRatio;
 let cellHeight = calculatedFontSize * lineHeight * pixelRatio;
 let fontSize = calculatedFontSize * pixelRatio;
 
-canvas.style.cssText = `width: ${calculatedFontSize * displayArea.width}; height: ${
-    calculatedFontSize * lineHeight * displayArea.height
+canvas.style.cssText = `width: ${calculatedFontSize * Layout.width}; height: ${
+    calculatedFontSize * lineHeight * Layout.height
 }`;
-canvas.width = cellWidth * displayArea.width;
-canvas.height = cellHeight * displayArea.height;
+canvas.width = cellWidth * Layout.width;
+canvas.height = cellHeight * Layout.height;
 
 ctx.font = `normal ${fontSize}px ${font}`;
 ctx.textAlign = 'center';

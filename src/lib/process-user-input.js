@@ -9,47 +9,44 @@ const LOAD = 'LOAD';
 
 export const input = (key) => {
     switch (key) {
+        // Game save
         case 'S':
-            gameState.userInput = {type: SAVE, payload: {}};
+            gameState.userInput.push({type: SAVE, payload: {}});
             break;
         case 'L':
-            gameState.userInput = {type: LOAD, payload: {}};
+            gameState.userInput.push({type: LOAD, payload: {}});
             break;
+
+        // Movement
         case 'ArrowUp':
-            gameState.userInput = {type: MOVE, payload: {x: 0, y: -1}};
+            gameState.userInput.push({type: MOVE, payload: {x: 0, y: -1}});
             break;
         case 'ArrowDown':
-            gameState.userInput = {type: MOVE, payload: {x: 0, y: 1}};
+            gameState.userInput.push({type: MOVE, payload: {x: 0, y: 1}});
             break;
         case 'ArrowLeft':
-            gameState.userInput = {type: MOVE, payload: {x: -1, y: 0}};
+            gameState.userInput.push({type: MOVE, payload: {x: -1, y: 0}});
             break;
         case 'ArrowRight':
-            gameState.userInput = {type: MOVE, payload: {x: 1, y: 0}};
+            gameState.userInput.push({type: MOVE, payload: {x: 1, y: 0}});
             break;
-        case 'Escape': {
-            gameState.userInput = {type: ESCAPE, payload: {}};
-            break;
-        }
     }
 };
 
 export const processUserInput = () => {
-    if (!gameState.userInput) {
-        return;
-    }
+    while (gameState.userInput.length) {
+        const {type, payload} = gameState.userInput.shift();
 
-    const {type, payload} = gameState.userInput;
+        if (type === MOVE) {
+            player.add(MoveTo, payload);
+        }
 
-    if (type === MOVE) {
-        player.add(MoveTo, payload);
-    }
+        if (type === SAVE) {
+            saveGame();
+        }
 
-    if (type === SAVE) {
-        saveGame();
-    }
-
-    if (type === LOAD) {
-        loadGame();
+        if (type === LOAD) {
+            loadGame();
+        }
     }
 };
